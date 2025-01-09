@@ -1,102 +1,76 @@
-Algorithm Visualizer
-Overview
-A dynamic and interactive web application designed to visualize the inner workings of common data structures and algorithms. The visualizer provides users with an intuitive step-by-step representation to enhance understanding and bridge the gap between theory and implementation.
+<div align="center">
+  <h1>Algorithm Visualizer 🎯</h1>
+  <p>
+    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
+    <img src="https://img.shields.io/badge/D3.js-F9A03C?style=for-the-badge&logo=d3.js&logoColor=white" alt="D3.js"/>
+  </p>
+  <p>An interactive web application for visualizing data structures and algorithms</p>
+</div>
 
-Key Features
-Interactive Visualizations
+<div align="center">
+  <img src="demo.gif" alt="Algorithm Visualizer Demo" width="700"/>
+</div>
 
-Sorting Algorithms
-Bubble Sort
-Quick Sort
-Searching Algorithms
-Binary Search
-Data Structures
-Linked List (Insertion and Traversal)
-Binary Tree (Insertion and Structure)
-Multi-Language Support
+<h2>✨ Features</h2>
 
-Implementation examples and code snippets in:
-Java
-Python
-Real-Time Animation Controls
+<details>
+<summary>Interactive Visualizations</summary>
+<br>
+  
+- **Sorting Algorithms**
+  - Bubble Sort
+  - Quick Sort
+- **Searching Algorithms**
+  - Binary Search
+- **Data Structures**
+  - Linked List
+  - Binary Tree
+</details>
 
-Play/Pause functionality
-Adjustable animation speed
-Step-by-step progression for granular understanding
-Reset to restart the visualization at any time
-Code Display
+<details>
+<summary>Multi-Language Support</summary>
+<br>
 
-Real-time code view with syntax highlighting
-Editable snippets for hands-on learning
-Display of language-specific implementations
-Technologies Used
-Frontend
-React.js: Modular UI components
-D3.js: Scalable and customizable visualizations
-CSS3: Clean and engaging styling for a modern look
-Development Tools
-Vite: Fast and lightweight bundler for development
-Node.js and npm: Backend environment and package management
-Supported Algorithms and Data Structures
-Sorting Algorithms
-Bubble Sort
+- Java
+- Python
+</details>
 
-Time Complexity: 
-𝑂
-(
-𝑛
-2
-)
-O(n 
-2
- )
-Space Complexity: 
-𝑂
-(
-1
-)
-O(1)
-Quick Sort
+<details>
+<summary>Real-Time Controls</summary>
+<br>
 
-Time Complexity: 
-𝑂
-(
-𝑛
-log
-⁡
-𝑛
-)
-O(nlogn)
-Space Complexity: 
-𝑂
-(
-log
-⁡
-𝑛
-)
-O(logn)
-Searching Algorithms
-Binary Search
-Time Complexity: 
-𝑂
-(
-log
-⁡
-𝑛
-)
-O(logn)
-Space Complexity: 
-𝑂
-(
-1
-)
-O(1)
-Data Structures
-Linked List
+- ⏯️ Play/Pause functionality
+- 🎚️ Speed adjustment
+- 👣 Step-by-step progression
+- 🔄 Reset capability
+</details>
 
-Operations: Insertion, Traversal
-Visualization: Dynamic node connections with pointer movements
-Binary Tree
+<h2>🛠️ Languages and Tools</h2>
 
-Operations: Node Insertion
-Visualization: Hierarchical tree structure with clear node relationships
+<p align="left">
+  <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/>
+  </a>
+  <a href="https://www.java.com" target="_blank" rel="noreferrer">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/>
+  </a>
+  <a href="https://www.python.org" target="_blank" rel="noreferrer">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/>
+  </a>
+  <a href="https://d3js.org/" target="_blank" rel="noreferrer">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/d3js/d3js-original.svg" alt="d3js" width="40" height="40"/>
+  </a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
+  </a>
+  <a href="https://nodejs.org" target="_blank" rel="noreferrer">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/>
+  </a>
+</p>
+
+<h2>⚡ Installation</h2>
+
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/algorithm-visualizer.git
