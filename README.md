@@ -33,27 +33,40 @@ Development Tools
 Vite
 Node.js
 npm
-Getting Started
-Prerequisites
-Node.js (v14.0.0 or higher)
-npm (v6.0.0 or higher)
-Installation
-Clone the repository
-BASH
 
-git clone https://github.com/yourusername/algorithm-visualizer.git
-Navigate to the project directory
-BASH
+Usage
+Select an algorithm from the dropdown menu
+Choose your preferred programming language (Java/Python)
+Modify the input array if desired
+Click "Run" to start the visualization
+Use the control panel to:
+Adjust animation speed
+Play/Pause the visualization
+Step through the algorithm
+Reset the visualization
+Supported Algorithms
+Sorting Algorithms
+Bubble Sort
 
-cd algorithm-visualizer
-Install dependencies
-BASH
+Time Complexity: O(n²)
+Space Complexity: O(1)
+Quick Sort
 
-cd frontend
-npm install
-Start the development server
-BASH
+Time Complexity: O(n log n)
+Space Complexity: O(log n)
+Searching Algorithms
+Binary Search
+Time Complexity: O(log n)
+Space Complexity: O(1)
+Data Structures
+Linked List
 
-npm run dev
-Open your browser and visit http://localhost:5173# Data Stuctures and Algorithms Visualizer
- 
+Operations: Insertion, Traversal
+Visualization: Node connections and pointer movements
+Binary Tree
+
+Operations: Insertion
+Visualization: Tree structure and node relationships
+
+
+
