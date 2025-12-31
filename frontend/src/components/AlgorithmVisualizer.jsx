@@ -60,11 +60,11 @@ function AlgorithmVisualizer({ algorithm, visualizationSteps, isRunning }) {
       .attr('width', xScale.bandwidth())
       .attr('height', d => height - padding - yScale(d))
       .attr('fill', (d, i) => {
-        if (step.pivot === i) return '#ff8c00';
+        if (step.pivot === i) return '#f59e0b';
         if (step.comparing && step.comparing.includes(i)) {
-          return step.swapping ? '#ff0000' : '#ffff00';
+          return step.swapping ? '#ef4444' : '#fbbf24';
         }
-        return '#3498db';
+        return '#6366f1';
       });
 
     // Add values on top of bars
@@ -76,7 +76,9 @@ function AlgorithmVisualizer({ algorithm, visualizationSteps, isRunning }) {
       .attr('x', (d, i) => xScale(i) + xScale.bandwidth() / 2)
       .attr('y', d => yScale(d) - 5)
       .attr('text-anchor', 'middle')
-      .attr('fill', '#333');
+      .attr('fill', '#e2e8f0')
+      .attr('font-size', '14px')
+      .attr('font-weight', '600');
   };
 
   const drawBinarySearchVisualization = (svg, step, width, height, padding) => {
@@ -102,12 +104,12 @@ function AlgorithmVisualizer({ algorithm, visualizationSteps, isRunning }) {
       .attr('height', d => height - padding - yScale(d))
       .attr('fill', (d, i) => {
         if (step.searching && step.searching.includes(i)) {
-          return step.found ? '#00ff00' : '#ffff00';
+          return step.found ? '#10b981' : '#fbbf24';
         }
         if (i >= step.left && i <= step.right) {
-          return '#3498db';
+          return '#6366f1';
         }
-        return '#cccccc';
+        return 'rgba(255, 255, 255, 0.1)';
       });
 
     // Add values on top of bars
@@ -119,7 +121,9 @@ function AlgorithmVisualizer({ algorithm, visualizationSteps, isRunning }) {
       .attr('x', (d, i) => xScale(i) + xScale.bandwidth() / 2)
       .attr('y', d => yScale(d) - 5)
       .attr('text-anchor', 'middle')
-      .attr('fill', '#333');
+      .attr('fill', '#e2e8f0')
+      .attr('font-size', '14px')
+      .attr('font-weight', '600');
   };
 
   const drawLinkedListVisualization = (svg, step, width, height, padding) => {
@@ -133,7 +137,7 @@ function AlgorithmVisualizer({ algorithm, visualizationSteps, isRunning }) {
         .attr('cx', padding + i * nodeSpacing)
         .attr('cy', height / 2)
         .attr('r', nodeRadius)
-        .attr('fill', i === step.current ? '#ffff00' : '#3498db')
+        .attr('fill', i === step.current ? '#fbbf24' : '#6366f1')
         .attr('stroke', '#333')
         .attr('stroke-width', 2);
 
@@ -143,6 +147,9 @@ function AlgorithmVisualizer({ algorithm, visualizationSteps, isRunning }) {
         .attr('y', height / 2)
         .attr('text-anchor', 'middle')
         .attr('dominant-baseline', 'middle')
+        .attr('fill', '#ffffff')
+        .attr('font-size', '14px')
+        .attr('font-weight', '600')
         .text(node.value);
 
       // Draw arrow
@@ -199,7 +206,7 @@ function AlgorithmVisualizer({ algorithm, visualizationSteps, isRunning }) {
         .attr('cx', x)
         .attr('cy', y)
         .attr('r', nodeRadius)
-        .attr('fill', node.value === step.currentValue ? '#ffff00' : '#3498db')
+        .attr('fill', node.value === step.currentValue ? '#fbbf24' : '#6366f1')
         .attr('stroke', '#333')
         .attr('stroke-width', 2);
 
@@ -208,7 +215,9 @@ function AlgorithmVisualizer({ algorithm, visualizationSteps, isRunning }) {
         .attr('y', y)
         .attr('text-anchor', 'middle')
         .attr('dominant-baseline', 'middle')
-        .attr('fill', '#333')
+        .attr('fill', '#ffffff')
+        .attr('font-size', '14px')
+        .attr('font-weight', '600')
         .text(node.value);
 
       if (node.left) drawNode(node.left, node);
@@ -229,68 +238,202 @@ function AlgorithmVisualizer({ algorithm, visualizationSteps, isRunning }) {
   }, [currentStep, isRunning, visualizationSteps, speed, isPaused]);
 
   return (
-    <div style={styles.container}>
+    <div className="algorithm-visualizer" style={styles.container}>
       <div style={styles.header}>
-        <h3>{algorithm || 'Select an Algorithm'}</h3>
+        <div style={styles.headerLeft}>
+          <h3 style={styles.title}>{algorithm || 'Select an Algorithm'}</h3>
+          {visualizationSteps && (
+            <div style={styles.stepIndicator}>
+              <span style={styles.stepText}>Step {currentStep + 1} / {visualizationSteps.length}</span>
+            </div>
+          )}
+        </div>
         {visualizationSteps && (
           <div style={styles.controls}>
             <button 
               onClick={() => setCurrentStep(0)}
               disabled={currentStep === 0}
+              style={styles.controlButton}
+              title="Reset"
             >
+              <span style={styles.buttonIcon}>↺</span>
               Reset
             </button>
             <button
               onClick={() => setIsPaused(!isPaused)}
+              style={styles.controlButton}
+              title={isPaused ? 'Play' : 'Pause'}
             >
+              <span style={styles.buttonIcon}>{isPaused ? '▶' : '⏸'}</span>
               {isPaused ? 'Play' : 'Pause'}
             </button>
-            <input
-              type="range"
-              min="100"
-              max="1000"
-              value={speed}
-              onChange={(e) => setSpeed(Number(e.target.value))}
-              style={styles.slider}
-            />
-            <span>Speed: {speed}ms</span>
-            <span>Step: {currentStep + 1} / {visualizationSteps.length}</span>
+            <div style={styles.sliderContainer}>
+              <span style={styles.sliderLabel}>Speed</span>
+              <input
+                type="range"
+                min="100"
+                max="1000"
+                value={speed}
+                onChange={(e) => setSpeed(Number(e.target.value))}
+                style={styles.slider}
+              />
+              <span style={styles.speedValue}>{speed}ms</span>
+            </div>
           </div>
         )}
       </div>
-      <svg
-        ref={svgRef}
-        width="500"
-        height="400"
-        style={styles.svg}
-      />
+      <div style={styles.visualizationWrapper}>
+        {!visualizationSteps ? (
+          <div style={styles.placeholder}>
+            <div style={styles.placeholderIcon}>📊</div>
+            <p style={styles.placeholderText}>Select an algorithm and run code to see visualization</p>
+          </div>
+        ) : (
+          <svg
+            ref={svgRef}
+            width="100%"
+            height="400"
+            style={styles.svg}
+            viewBox="0 0 500 400"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        )}
+      </div>
     </div>
   );
 }
 
 const styles = {
   container: {
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    padding: '20px',
+    background: 'rgba(26, 31, 58, 0.8)',
+    backdropFilter: 'blur(10px)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '16px',
+    padding: '1.5rem',
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    transition: 'all 0.3s ease',
   },
   header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: '20px',
+    marginBottom: '1.5rem',
+    flexWrap: 'wrap',
+    gap: '1rem',
+  },
+  headerLeft: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1rem',
+    flexWrap: 'wrap',
+  },
+  title: {
+    fontSize: '1.25rem',
+    fontWeight: 600,
+    color: '#ffffff',
+    margin: 0,
+    letterSpacing: '-0.01em',
+  },
+  stepIndicator: {
+    padding: '0.375rem 0.75rem',
+    background: 'rgba(99, 102, 241, 0.2)',
+    border: '1px solid rgba(99, 102, 241, 0.3)',
+    borderRadius: '8px',
+  },
+  stepText: {
+    fontSize: '0.875rem',
+    fontWeight: 500,
+    color: '#a5b4fc',
   },
   controls: {
     display: 'flex',
-    gap: '10px',
+    gap: '0.75rem',
     alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  controlButton: {
+    padding: '0.625rem 1rem',
+    background: 'rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+    borderRadius: '10px',
+    color: '#ffffff',
+    fontSize: '0.875rem',
+    fontWeight: 500,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    transition: 'all 0.2s ease',
+  },
+  buttonIcon: {
+    fontSize: '1rem',
+  },
+  sliderContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.75rem',
+    padding: '0.5rem 1rem',
+    background: 'rgba(255, 255, 255, 0.05)',
+    borderRadius: '10px',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+  },
+  sliderLabel: {
+    fontSize: '0.875rem',
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontWeight: 500,
   },
   slider: {
-    width: '100px',
+    width: '120px',
+    height: '6px',
+    borderRadius: '3px',
+    background: 'rgba(255, 255, 255, 0.1)',
+    outline: 'none',
+    cursor: 'pointer',
+    WebkitAppearance: 'none',
+  },
+  speedValue: {
+    fontSize: '0.875rem',
+    color: 'rgba(255, 255, 255, 0.7)',
+    fontWeight: 500,
+    minWidth: '50px',
+  },
+  visualizationWrapper: {
+    flex: 1,
+    background: '#0a0e27',
+    borderRadius: '12px',
+    border: '1px solid rgba(255, 255, 255, 0.05)',
+    overflow: 'hidden',
+    position: 'relative',
+    minHeight: '400px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  placeholder: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1rem',
+    padding: '3rem',
+    textAlign: 'center',
+  },
+  placeholderIcon: {
+    fontSize: '4rem',
+    opacity: 0.5,
+  },
+  placeholderText: {
+    color: 'rgba(255, 255, 255, 0.5)',
+    fontSize: '1rem',
+    margin: 0,
   },
   svg: {
-    backgroundColor: '#f9f9f9',
-    borderRadius: '4px',
+    width: '100%',
+    height: '100%',
+    background: 'transparent',
   }
 };
 
