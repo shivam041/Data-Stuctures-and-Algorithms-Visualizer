@@ -1,0 +1,24 @@
+{
+  "name": "algorithm-visualizer",
+  "version": "1.0.0",
+  "description": "Algorithm Visualizer - Full Stack Application",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "start": "cd frontend && npm run start",
+    "install": "cd frontend && npm install",
+    "install:all": "cd frontend && npm install && cd ../backend && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "algorithm",
+    "visualizer",
+    "data-structures"
+  ],
+  "author": "",
+  "license": "ISC"
+}
+
