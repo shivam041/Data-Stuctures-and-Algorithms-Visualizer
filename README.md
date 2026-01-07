@@ -13,10 +13,6 @@
 
 ## 🎨 Screenshots
 
-> **Note**: Add your screenshots to the `screenshots/` directory with the following filenames:
-> - `overview.png` - Main interface overview
-> - `quick-sort.png` - Quick Sort visualization
-> - `bubble-sort.png` - Bubble Sort visualization
 
 ### Modern Interface Overview
 <div align="center">
